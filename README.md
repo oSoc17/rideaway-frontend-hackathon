@@ -1,2 +1,2 @@
-# rideaway-frontend
-Bike navigation in Brussels
+# Rideaway
+Frontend for Rideaway
