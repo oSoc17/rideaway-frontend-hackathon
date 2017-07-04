@@ -1,8 +1,34 @@
 import React, { Component } from 'react';
-import ReactMapboxGl, { Layer, Feature } from 'react-mapbox-gl';
+import ReactMapboxGl from 'react-mapbox-gl';
 
 class Map extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      position: null
+    };
+  }
+
+  startTracking() {
+    if ('geolocation' in navigator) {
+      const watchPositionId = navigator.geolocation.watchPosition(
+        function(position) {
+          this.setState({ position });
+        },
+        console.warn,
+        { enableHighAccuracy: true }
+      );
+    } else {
+      alert("Sorry, your browser doesn't support geolocation!");
+    }
+  }
+
+  componentDidMount() {
+    this.startTracking();
+  }
   render() {
+    const { coords: { latitude, longitude } } = this.state.position;
     const Map = ReactMapboxGl({
       accessToken:
         'pk.eyJ1IjoiYXJuYXVkd2V5dHMiLCJhIjoiY2o0cGt3d3oxMXl0cDMzcXNlbThnM3RtaCJ9.BMUyxqHH-FC69pW4U4YO9A'
@@ -12,11 +38,8 @@ class Map extends Component {
       <Map
         style="mapbox://styles/mapbox/light-v9"
         containerStyle={{ height: '100vh', width: '100vw' }}
-      >
-        <Layer type="symbol" id="marker" layout={{ 'icon-image': 'marker-15' }}>
-          <Feature coordinates={[-0.481747846041145, 51.3233379650232]} />
-        </Layer>
-      </Map>
+        center={[latitude, longitude]}
+      />
     );
   }
 }
