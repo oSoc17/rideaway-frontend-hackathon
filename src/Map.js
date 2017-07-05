@@ -2,44 +2,39 @@ import React, { Component } from 'react';
 import ReactMapboxGl from 'react-mapbox-gl';
 
 class Map extends Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      position: null
-    };
+  componentWillMount() {
+    this.props.startTracking();
   }
 
-  startTracking() {
-    if ('geolocation' in navigator) {
-      const watchPositionId = navigator.geolocation.watchPosition(
-        function(position) {
-          this.setState({ position });
-        },
-        console.warn,
-        { enableHighAccuracy: true }
-      );
-    } else {
-      alert("Sorry, your browser doesn't support geolocation!");
+  componentWillUnmount() {
+    this.props.stopTracking();
+  }
+
+  getCenter() {
+    let longitude = 51.5285582;
+    let latitude = -0.2416815;
+    if (this.props.position) {
+      latitude = this.props.position.coords.latitude;
+      longitude = this.props.position.coords.longitude;
     }
+    return [longitude, latitude];
   }
 
-  componentDidMount() {
-    this.startTracking();
-  }
   render() {
-    const { coords: { latitude, longitude } } = this.state.position;
     const Map = ReactMapboxGl({
-      accessToken:
-        'pk.eyJ1IjoiYXJuYXVkd2V5dHMiLCJhIjoiY2o0cGt3d3oxMXl0cDMzcXNlbThnM3RtaCJ9.BMUyxqHH-FC69pW4U4YO9A'
+      accessToken: ''
     });
     /*eslint-disable react/style-prop-object*/
     return (
-      <Map
-        style="mapbox://styles/mapbox/light-v9"
-        containerStyle={{ height: '100vh', width: '100vw' }}
-        center={[latitude, longitude]}
-      />
+      <div>
+        <Map
+          style="https://openmaptiles.github.io/positron-gl-style/style-cdn.json"
+          containerStyle={{ height: '70vh', width: '100vw' }}
+          zoom={[13]}
+          center={this.getCenter()}
+          bearing={this.props.bearing}
+        />
+      </div>
     );
   }
 }
