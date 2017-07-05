@@ -16,11 +16,15 @@ class App extends Component {
 
   startTracking() {
     if ('geolocation' in navigator) {
-      navigator.geolocation.watchPosition(this.onPosition);
+      const watchPositionId = navigator.geolocation.watchPosition(
+        this.onPosition,
+        console.warn,
+        { enableHighAccuracy: true }
+      );
+      this.setState({ watchPositionId });
     } else {
       alert("Sorry, your browser doesn't support geolocation!");
     }
-
     if (window.DeviceOrientationEvent) {
       window.addEventListener('deviceorientation', this._setHeading);
     }
