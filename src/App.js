@@ -15,7 +15,7 @@ class App extends Component {
   }
 
   startTracking() {
-    if (navigator.geolocation) {
+    if ('geolocation' in navigator) {
       navigator.geolocation.watchPosition(this.onPosition);
     } else {
       alert("Sorry, your browser doesn't support geolocation!");
