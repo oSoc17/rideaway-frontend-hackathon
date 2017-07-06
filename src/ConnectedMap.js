@@ -1,7 +1,5 @@
-import React, { Component } from 'react';
+import React from 'react';
 import ReactMapboxGl, { Marker } from 'react-mapbox-gl';
-
-import Controls from './Controls';
 
 import icons from './icons';
 
@@ -21,45 +19,23 @@ const Map = ReactMapboxGl({
   accessToken: ''
 });
 
-class ConnectedMap extends Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      map: null,
-      zoom: 16.5
-    };
-  }
-
-  centerMap(map, center, zoom) {
-    map.flyTo({ center: center(), zoom });
-  }
-
+const ConnectedMap = ({ bearing, center, zoom, setMap }) => {
   /*eslint-disable react/style-prop-object*/
-  render() {
-    const { bearing, center, navigating, changeControls } = this.props;
-    const { map, zoom } = this.state;
-    return (
-      <div>
-        <Map
-          style="https://openmaptiles.github.io/positron-gl-style/style-cdn.json"
-          containerStyle={{ height: '100vh', width: '100vw' }}
-          zoom={[zoom]}
-          center={center()}
-          bearing={bearing}
-          onStyleLoad={mapboxmap => this.setState({ map: mapboxmap })}
-        >
-          <User position={center()} bearing={bearing} />
-        </Map>
-        <Controls
-          centerMap={() => this.centerMap(map, center, zoom)}
-          navigating={navigating}
-          changeControls={() => changeControls()}
-        />
-      </div>
-    );
-  }
+  return (
+    <div>
+      <Map
+        style="https://openmaptiles.github.io/positron-gl-style/style-cdn.json"
+        containerStyle={{ height: '100vh', width: '100vw' }}
+        zoom={[zoom]}
+        center={center()}
+        bearing={bearing}
+        onStyleLoad={mapboxmap => setMap(mapboxmap)}
+      >
+        <User position={center()} bearing={bearing} />
+      </Map>
+    </div>
+  );
   /*eslint-enable react/style-prop-object*/
-}
+};
 
 export default ConnectedMap;
