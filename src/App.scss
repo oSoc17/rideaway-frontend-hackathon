@@ -1,27 +1,35 @@
+@import './_colors';
+
 .App {
   height: 100vh;
-  width: 100vw; }
+  width: 100vw;
+}
 
 .Map {
-  width: 100%; }
+  width: 100%;
+}
 
 .btn {
   border: none;
   border-radius: 50%;
   padding: 1em;
   outline: none;
-  background-color: #fbba00; }
+  background-color: $primary_color;
+}
 
 .btn-leftbottom {
   position: absolute;
   left: 2em;
-  bottom: 2em; }
+  bottom: 2em;
+}
 
 .btn-rightbottom {
   position: absolute;
   right: 2em;
-  bottom: 2em; }
+  bottom: 2em;
+}
 
 .icon-btn {
   width: 3em;
-  height: 3em; }
+  height: 3em;
+}

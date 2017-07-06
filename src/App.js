@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 
 import Map from './Map';
+
 import './App.css';
 
 class App extends Component {
@@ -9,7 +10,7 @@ class App extends Component {
 
     this.state = {
       watchPositionId: 0,
-      bearing: 0,
+      bearing: 45,
       position: null
     };
   }

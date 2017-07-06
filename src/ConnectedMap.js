@@ -1,12 +1,14 @@
 import React, { Component } from 'react';
 import ReactMapboxGl, { Marker } from 'react-mapbox-gl';
 
-const User = ({ position }) => {
+import icons from './icons';
+
+const User = ({ position, bearing }) => {
   return (
     <Marker coordinates={position} anchor="bottom">
       <img
-        style={{ width: 56, height: 56 }}
-        src="http://icons.iconarchive.com/icons/paomedia/small-n-flat/1024/map-marker-icon.png"
+        style={{ width: 56, height: 56, transform: `rotate(${bearing}deg)` }}
+        src={icons.NavBlue}
         alt="Marker"
       />
     </Marker>
@@ -34,17 +36,32 @@ class ConnectedMap extends Component {
       <div>
         <Map
           style="https://openmaptiles.github.io/positron-gl-style/style-cdn.json"
-          containerStyle={{ height: '70vh', width: '100vw' }}
+          containerStyle={{ height: '100vh', width: '100vw' }}
           zoom={[zoom]}
           center={center()}
           bearing={bearing}
           onStyleLoad={mapboxmap => this.setState({ map: mapboxmap })}
         >
-          <User position={center()} />
+          <User position={center()} bearing={bearing} />
         </Map>
-        <button onClick={() => map.flyTo({ center: center(), zoom })}>
-          CENTER
+        <button
+          className="btn btn-leftbottom"
+          onClick={() =>
+            map.flyTo({
+              center: center(),
+              zoom
+            })}
+        >
+          <img
+            className="icon-btn"
+            src={icons.NavWhite}
+            alt="navigation arrow"
+          />
         </button>
+        <button
+          className="btn btn-rightbottom"
+          onClick={() => console.log('stop')}
+        />
       </div>
     );
   }
