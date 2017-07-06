@@ -17,7 +17,7 @@ class Map extends Component {
       const longitude = this.props.position.coords.longitude;
       return [longitude, latitude];
     } else {
-      return [0, 0];
+      return [4.3517, 50.8503];
     }
   }
 

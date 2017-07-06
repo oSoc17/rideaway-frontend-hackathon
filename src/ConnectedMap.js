@@ -22,25 +22,27 @@ class ConnectedMap extends Component {
     super(props);
 
     this.state = {
-      map: null
+      map: null,
+      zoom: 16.5
     };
   }
   /*eslint-disable react/style-prop-object*/
   render() {
     const { bearing, center } = this.props;
+    const { map, zoom } = this.state;
     return (
       <div>
         <Map
           style="https://openmaptiles.github.io/positron-gl-style/style-cdn.json"
           containerStyle={{ height: '70vh', width: '100vw' }}
-          zoom={[13]}
+          zoom={[zoom]}
           center={center()}
           bearing={bearing}
-          onStyleLoad={map => this.setState({ map })}
+          onStyleLoad={mapboxmap => this.setState({ map: mapboxmap })}
         >
           <User position={center()} />
         </Map>
-        <button onClick={() => this.state.map.flyTo({ center: center() })}>
+        <button onClick={() => map.flyTo({ center: center(), zoom })}>
           CENTER
         </button>
       </div>
