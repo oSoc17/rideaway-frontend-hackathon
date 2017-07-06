@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import ReactMapboxGl, { Marker } from 'react-mapbox-gl';
 
+import Controls from './Controls';
+
 import icons from './icons';
 
 const User = ({ position, bearing }) => {
@@ -28,9 +30,14 @@ class ConnectedMap extends Component {
       zoom: 16.5
     };
   }
+
+  centerMap(map, center, zoom) {
+    map.flyTo({ center: center(), zoom });
+  }
+
   /*eslint-disable react/style-prop-object*/
   render() {
-    const { bearing, center } = this.props;
+    const { bearing, center, navigating, changeControls } = this.props;
     const { map, zoom } = this.state;
     return (
       <div>
@@ -44,23 +51,10 @@ class ConnectedMap extends Component {
         >
           <User position={center()} bearing={bearing} />
         </Map>
-        <button
-          className="btn btn-leftbottom"
-          onClick={() =>
-            map.flyTo({
-              center: center(),
-              zoom
-            })}
-        >
-          <img
-            className="icon-btn"
-            src={icons.NavWhite}
-            alt="navigation arrow"
-          />
-        </button>
-        <button
-          className="btn btn-rightbottom"
-          onClick={() => console.log('stop')}
+        <Controls
+          centerMap={() => this.centerMap(map, center, zoom)}
+          navigating={navigating}
+          changeControls={() => changeControls()}
         />
       </div>
     );

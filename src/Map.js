@@ -22,10 +22,15 @@ class Map extends Component {
   }
 
   render() {
-    const { bearing } = this.props;
+    const { bearing, changeControls, navigating } = this.props;
     return (
       <div>
-        <ConnectedMap center={() => this.getCenter()} bearing={bearing} />
+        <ConnectedMap
+          center={() => this.getCenter()}
+          bearing={bearing}
+          navigating={navigating}
+          changeControls={() => changeControls()}
+        />
       </div>
     );
   }

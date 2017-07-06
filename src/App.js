@@ -11,7 +11,10 @@ class App extends Component {
     this.state = {
       watchPositionId: 0,
       bearing: 45,
-      position: null
+      position: null,
+      navigating: false,
+      destination: null,
+      origin: null
     };
   }
 
@@ -47,7 +50,14 @@ class App extends Component {
   }
 
   render() {
-    const { position, bearing, watchPositionId } = this.state;
+    const {
+      position,
+      bearing,
+      watchPositionId,
+      origin,
+      destination,
+      navigating
+    } = this.state;
     return (
       <div className="App">
         <Map
@@ -56,6 +66,10 @@ class App extends Component {
           watchPositionId={watchPositionId}
           startTracking={() => this.startTracking()}
           stopTracking={() => this.stopTracking()}
+          changeControls={() => this.setState({ navigating: !navigating })}
+          navigating={navigating}
+          origin={origin}
+          destination={destination}
         />
       </div>
     );

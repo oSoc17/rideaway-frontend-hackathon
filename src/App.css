@@ -5,6 +5,26 @@
 .Map {
   width: 100%; }
 
+.Controls {
+  width: 80vw;
+  position: absolute;
+  margin: 0 10vw;
+  bottom: 2em; }
+
+.infobadges {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 1em; }
+
+.badge {
+  border-radius: 50px;
+  background: #fff;
+  min-width: 6em;
+  height: 3em;
+  display: flex;
+  align-items: center;
+  justify-content: center; }
+
 .btn {
   border: none;
   border-radius: 50%;
@@ -12,13 +32,21 @@
   outline: none;
   background-color: #fbba00; }
 
+.btn-center {
+  padding: 0.5em;
+  width: 100%;
+  bottom: 2em;
+  border-radius: 50px;
+  color: #fff;
+  font-size: 25px;
+  text-transform: uppercase; }
+
 .btn-leftbottom {
-  position: absolute;
   left: 2em;
   bottom: 2em; }
 
 .btn-rightbottom {
-  position: absolute;
+  float: right;
   right: 2em;
   bottom: 2em; }
 
