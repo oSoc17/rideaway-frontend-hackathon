@@ -36,7 +36,7 @@ class Map extends Component {
   }
 
   render() {
-    const { bearing, changeControls, navigating, browsing } = this.props;
+    const { bearing } = this.props;
     const { map, zoom } = this.state;
     return (
       <div>
@@ -45,13 +45,9 @@ class Map extends Component {
           bearing={bearing}
           zoom={zoom}
           setMap={mapboxmap => this.setState({ map: mapboxmap })}
-          changeControls={() => changeControls()}
         />
         <Controls
           centerMap={() => this.centerMap(map, this.getCenter(), zoom)}
-          navigating={navigating}
-          browsing={browsing}
-          changeControls={() => changeControls()}
         />
       </div>
     );

@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
 
+import Home from './Home';
 import Map from './Map';
 
 import './App.css';
@@ -10,12 +12,10 @@ class App extends Component {
 
     this.state = {
       watchPositionId: 0,
-      bearing: 45,
       position: null,
-      navigating: false,
-      browsing: true,
-      destination: null,
-      origin: null
+      bearing: 0,
+      origin: null,
+      destination: null
     };
   }
 
@@ -41,7 +41,7 @@ class App extends Component {
 
   _setHeading = e => {
     this.setState({
-      userHeading: e.alpha || e.webkitCompassHeading
+      bearing: e.alpha || e.webkitCompassHeading
     });
   };
 
@@ -51,30 +51,25 @@ class App extends Component {
   }
 
   render() {
-    const {
-      position,
-      bearing,
-      watchPositionId,
-      origin,
-      destination,
-      navigating,
-      browsing
-    } = this.state;
+    const { position, bearing, origin, destination } = this.state;
     return (
-      <div className="App">
-        <Map
-          position={position}
-          bearing={bearing}
-          watchPositionId={watchPositionId}
-          startTracking={() => this.startTracking()}
-          stopTracking={() => this.stopTracking()}
-          changeControls={() => this.setState({ navigating: !navigating })}
-          navigating={navigating}
-          browsing={browsing}
-          origin={origin}
-          destination={destination}
-        />
-      </div>
+      <Router>
+        <div className="App">
+          <Route exact path="/" component={Home} />
+          <Route
+            path="/overview"
+            render={() =>
+              <Map
+                position={position}
+                bearing={bearing}
+                origin={origin}
+                destination={destination}
+                startTracking={() => this.startTracking()}
+                stopTracking={() => this.stopTracking()}
+              />}
+          />
+        </div>
+      </Router>
     );
   }
 }

@@ -2,20 +2,20 @@ import React from 'react';
 
 import icons from './shared/icons';
 
-const renderNavControls = (centerMap, changeControls) => {
+const renderNavControls = centerMap => {
   return (
     <div>
       <button className="btn btn-leftbottom" onClick={() => centerMap()}>
         <img className="icon-btn" src={icons.NavWhite} alt="navigation arrow" />
       </button>
-      <button className="btn btn-rightbottom" onClick={() => changeControls()}>
+      <button className="btn btn-rightbottom">
         <img className="icon-btn" src={icons.Close} alt="cross icon" />
       </button>
     </div>
   );
 };
 
-const renderRouteControls = changeControls => {
+const renderRouteControls = () => {
   return (
     <div>
       <div className="infobadges">
@@ -23,26 +23,19 @@ const renderRouteControls = changeControls => {
         <div className="badge">INFO 1</div>
         <div className="badge">INFO 1</div>
       </div>
-      <button className="btn btn-center" onClick={() => changeControls()}>
-        Start
-      </button>
+      <button className="btn btn-center">Start</button>
     </div>
   );
 };
 
-const renderControls = (navigating, browsing, centerMap, changeControls) => {
-  if (navigating) {
-    return renderNavControls(centerMap, changeControls);
-  } else if (browsing) {
-    return undefined;
-  }
-  return renderRouteControls(changeControls);
+const renderControls = centerMap => {
+  return null;
 };
 
-const Controls = ({ centerMap, navigating, changeControls }) => {
+const Controls = ({ centerMap }) => {
   return (
     <div className="Controls">
-      {renderControls(navigating, centerMap, changeControls)}
+      {renderControls(centerMap)}
     </div>
   );
 };
