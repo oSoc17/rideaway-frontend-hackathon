@@ -2,8 +2,9 @@ import React from 'react';
 
 const Home = () => {
   return (
-    <div>
-      <h1>Home</h1>
+    <div className="home">
+      <input type="text" placeholder="origin" />
+      <input type="text" placeholder="destination" />
     </div>
   );
 };
