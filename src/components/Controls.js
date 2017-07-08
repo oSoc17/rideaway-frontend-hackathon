@@ -1,6 +1,6 @@
 import React from 'react';
 
-import icons from './icons';
+import icons from './shared/icons';
 
 const renderNavControls = (centerMap, changeControls) => {
   return (
@@ -30,9 +30,11 @@ const renderRouteControls = changeControls => {
   );
 };
 
-const renderControls = (navigating, centerMap, changeControls) => {
+const renderControls = (navigating, browsing, centerMap, changeControls) => {
   if (navigating) {
     return renderNavControls(centerMap, changeControls);
+  } else if (browsing) {
+    return undefined;
   }
   return renderRouteControls(changeControls);
 };

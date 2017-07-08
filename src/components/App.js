@@ -13,6 +13,7 @@ class App extends Component {
       bearing: 45,
       position: null,
       navigating: false,
+      browsing: true,
       destination: null,
       origin: null
     };
@@ -56,7 +57,8 @@ class App extends Component {
       watchPositionId,
       origin,
       destination,
-      navigating
+      navigating,
+      browsing
     } = this.state;
     return (
       <div className="App">
@@ -68,6 +70,7 @@ class App extends Component {
           stopTracking={() => this.stopTracking()}
           changeControls={() => this.setState({ navigating: !navigating })}
           navigating={navigating}
+          browsing={browsing}
           origin={origin}
           destination={destination}
         />

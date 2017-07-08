@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactMapboxGl, { Marker } from 'react-mapbox-gl';
 
-import icons from './icons';
+import icons from '../shared/icons';
 
 const User = ({ position, bearing }) => {
   return (

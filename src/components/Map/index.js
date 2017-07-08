@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 
 import ConnectedMap from './ConnectedMap';
-import Controls from './Controls';
+import Controls from '../Controls';
 
 class Map extends Component {
   constructor(props) {
@@ -36,7 +36,7 @@ class Map extends Component {
   }
 
   render() {
-    const { bearing, changeControls, navigating } = this.props;
+    const { bearing, changeControls, navigating, browsing } = this.props;
     const { map, zoom } = this.state;
     return (
       <div>
@@ -50,6 +50,7 @@ class Map extends Component {
         <Controls
           centerMap={() => this.centerMap(map, this.getCenter(), zoom)}
           navigating={navigating}
+          browsing={browsing}
           changeControls={() => changeControls()}
         />
       </div>

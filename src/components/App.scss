@@ -1,55 +1,67 @@
+@import './shared/_colors';
+
 .App {
   height: 100vh;
-  width: 100vw; }
+  width: 100vw;
+}
 
 .Map {
-  width: 100%; }
+  width: 100%;
+}
 
 .Controls {
   width: 80vw;
   position: absolute;
   margin: 0 10vw;
-  bottom: 2em; }
+  bottom: 2em;
+}
 
 .infobadges {
   display: flex;
   justify-content: space-between;
-  margin-bottom: 1em; }
+  margin-bottom: 1em;
+}
 
 .badge {
   border-radius: 50px;
-  background: #fff;
+  background: $white;
   min-width: 6em;
   height: 3em;
   display: flex;
   align-items: center;
-  justify-content: center; }
+  justify-content: center;
+}
 
 .btn {
   border: none;
   border-radius: 50%;
   padding: 1em;
   outline: none;
-  background-color: #fbba00; }
+  background-color: $primary_color;
+}
 
 .btn-center {
   padding: 0.5em;
   width: 100%;
   bottom: 2em;
   border-radius: 50px;
-  color: #fff;
+  color: $white;
   font-size: 25px;
-  text-transform: uppercase; }
+  text-transform: uppercase;
+}
 
 .btn-leftbottom {
   left: 2em;
-  bottom: 2em; }
+  bottom: 2em;
+}
 
 .btn-rightbottom {
   float: right;
   right: 2em;
-  bottom: 2em; }
+  bottom: 2em;
+}
 
 .icon-btn {
   width: 3em;
-  height: 3em; }
+  height: 3em;
+}
