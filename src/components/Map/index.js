@@ -9,12 +9,12 @@ class Map extends Component {
 
     this.state = {
       map: null,
-      zoom: 16.5
+      zoom: 15
     };
   }
 
   componentWillMount() {
-    //this.props.startTracking();
+    this.props.startTracking();
   }
 
   componentWillUnmount() {

@@ -1,5 +1,5 @@
 import React from 'react';
-import ReactMapboxGl, { Marker, Layer, GeoJSONLayer } from 'react-mapbox-gl';
+import ReactMapboxGl, { Marker, GeoJSONLayer } from 'react-mapbox-gl';
 
 import allRoutes from '../../GFR.geojson';
 
@@ -38,6 +38,7 @@ const ConnectedMap = ({ bearing, center, zoom, setMap }) => {
         style="https://openmaptiles.github.io/positron-gl-style/style-cdn.json"
         containerStyle={{ height: '100vh', width: '100vw' }}
         zoom={[zoom]}
+        minZoom={10}
         center={center()}
         bearing={bearing}
         onStyleLoad={mapboxmap => setMap(mapboxmap)}
