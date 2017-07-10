@@ -30,13 +30,13 @@ const linePaint = {
   'line-width': 5
 };
 
-const ConnectedMap = ({ bearing, center, zoom, setMap }) => {
+const ConnectedMap = ({ bearing, track, center, zoom, setMap, setZoom }) => {
   /*eslint-disable react/style-prop-object*/
   return (
     <div>
       <Map
         style="https://openmaptiles.github.io/positron-gl-style/style-cdn.json"
-        containerStyle={{ height: '100vh', width: '100vw' }}
+        containerStyle={{ height: '90vh', width: '100vw' }}
         zoom={[zoom]}
         minZoom={10}
         center={center()}
@@ -48,7 +48,7 @@ const ConnectedMap = ({ bearing, center, zoom, setMap }) => {
           lineLayout={lineLayout}
           linePaint={linePaint}
         />
-        <User position={center()} bearing={bearing} />
+        {track && <User position={center()} bearing={bearing} />}
       </Map>
     </div>
   );

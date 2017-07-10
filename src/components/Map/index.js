@@ -14,11 +14,11 @@ class Map extends Component {
   }
 
   componentWillMount() {
-    this.props.startTracking();
+    this.props.track && this.props.startTracking();
   }
 
   componentWillUnmount() {
-    this.props.stopTracking();
+    this.props.track && this.props.stopTracking();
   }
 
   getCenter() {
@@ -37,7 +37,7 @@ class Map extends Component {
   }
 
   render() {
-    const { bearing } = this.props;
+    const { bearing, track } = this.props;
     const { map, zoom } = this.state;
     return (
       <div>
@@ -45,10 +45,8 @@ class Map extends Component {
           center={() => this.getCenter()}
           bearing={bearing}
           zoom={zoom}
+          track={track}
           setMap={mapboxmap => this.setState({ map: mapboxmap })}
-        />
-        <Controls
-          centerMap={() => this.centerMap(map, this.getCenter(), zoom)}
         />
       </div>
     );

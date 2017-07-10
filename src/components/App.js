@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 
-import Home from './Home';
-import Map from './Map';
+import Nav from './Nav';
+import Navigate from './Navigate';
+import Discover from './Discover';
 
 import './App.css';
 
@@ -55,11 +56,11 @@ class App extends Component {
     return (
       <Router>
         <div className="App">
-          <Route exact path="/" component={Home} />
           <Route
-            path="/overview"
+            path="/map/navigate"
             render={() =>
-              <Map
+              <Navigate
+                track={true}
                 position={position}
                 bearing={bearing}
                 origin={origin}
@@ -68,6 +69,8 @@ class App extends Component {
                 stopTracking={() => this.stopTracking()}
               />}
           />
+          <Route exact path="/map/discover" component={Discover} />
+          <Nav />
         </div>
       </Router>
     );
