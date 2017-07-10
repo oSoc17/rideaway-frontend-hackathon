@@ -1,0 +1,16 @@
+@import './colors';
+
+.input {
+  border: 1px solid $primary_color;
+  border-radius: 50px;
+  font-size: 25px;
+  padding: 0.5em 0;
+  text-indent: 1em;
+  box-sizing: border-box;
+  width: 100%;
+}
+
+.searchinput {
+  width: 80vw;
+  padding: 0 4em;
+}
