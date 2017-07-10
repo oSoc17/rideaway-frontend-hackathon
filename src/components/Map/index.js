@@ -14,7 +14,7 @@ class Map extends Component {
   }
 
   componentWillMount() {
-    this.props.startTracking();
+    //this.props.startTracking();
   }
 
   componentWillUnmount() {
@@ -27,6 +27,7 @@ class Map extends Component {
       const longitude = this.props.position.coords.longitude;
       return [longitude, latitude];
     } else {
+      //return [-77.01239, 38.91275];
       return [4.3517, 50.8503];
     }
   }

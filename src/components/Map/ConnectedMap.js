@@ -1,5 +1,7 @@
 import React from 'react';
-import ReactMapboxGl, { Marker } from 'react-mapbox-gl';
+import ReactMapboxGl, { Marker, Layer, GeoJSONLayer } from 'react-mapbox-gl';
+
+import allRoutes from '../../GFR.geojson';
 
 import icons from '../shared/icons';
 
@@ -19,6 +21,15 @@ const Map = ReactMapboxGl({
   accessToken: ''
 });
 
+const lineLayout = { visibility: 'visible' };
+const linePaint = {
+  'line-color': {
+    type: 'identity',
+    property: 'colour'
+  },
+  'line-width': 5
+};
+
 const ConnectedMap = ({ bearing, center, zoom, setMap }) => {
   /*eslint-disable react/style-prop-object*/
   return (
@@ -31,6 +42,11 @@ const ConnectedMap = ({ bearing, center, zoom, setMap }) => {
         bearing={bearing}
         onStyleLoad={mapboxmap => setMap(mapboxmap)}
       >
+        <GeoJSONLayer
+          data={allRoutes}
+          lineLayout={lineLayout}
+          linePaint={linePaint}
+        />
         <User position={center()} bearing={bearing} />
       </Map>
     </div>
