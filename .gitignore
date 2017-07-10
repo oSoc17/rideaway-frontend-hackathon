@@ -32,6 +32,7 @@ yarn-error.log
 .env.test.local
 .env.production.local
 
+
 # ignore auto-compiled css files
 /src/**/*.css
 
