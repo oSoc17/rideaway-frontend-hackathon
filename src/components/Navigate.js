@@ -16,6 +16,7 @@ const Navigate = ({
       <Controls />
       <Map
         track={true}
+        showCenter={true}
         position={position}
         bearing={bearing}
         origin={origin}

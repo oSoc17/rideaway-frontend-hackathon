@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 
+import icons from '../shared/icons';
+
 import ConnectedMap from './ConnectedMap';
-import Controls from '../Controls';
 
 class Map extends Component {
   constructor(props) {
@@ -9,7 +10,7 @@ class Map extends Component {
 
     this.state = {
       map: null,
-      zoom: 15
+      zoom: props.zoom || 15
     };
   }
 
@@ -27,27 +28,37 @@ class Map extends Component {
       const longitude = this.props.position.coords.longitude;
       return [longitude, latitude];
     } else {
-      //return [-77.01239, 38.91275];
       return [4.3517, 50.8503];
     }
   }
 
-  centerMap(map, center, zoom) {
-    map.flyTo({ center, zoom });
+  centerMap() {
+    const { map } = this.state;
+    map.flyTo({ center: this.getCenter(), zoom: 15 });
+  }
+
+  renderCenterButton(center) {
+    return (
+      <button onClick={() => this.centerMap()} className="btn btn-center">
+        <img className="icon-btn" src={icons.NavYellow} alt="center button" />
+      </button>
+    );
   }
 
   render() {
-    const { bearing, track } = this.props;
-    const { map, zoom } = this.state;
+    const { bearing, track, showCenter } = this.props;
+    const { zoom } = this.state;
     return (
-      <div>
+      <div className="Map">
         <ConnectedMap
           center={() => this.getCenter()}
           bearing={bearing}
           zoom={zoom}
           track={track}
           setMap={mapboxmap => this.setState({ map: mapboxmap })}
+          setZoom={zoom => this.setState({ zoom })}
         />
+        {showCenter && this.renderCenterButton()}
       </div>
     );
   }

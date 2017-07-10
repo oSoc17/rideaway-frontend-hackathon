@@ -30,7 +30,16 @@ const linePaint = {
   'line-width': 5
 };
 
-const ConnectedMap = ({ bearing, track, center, zoom, setMap, setZoom }) => {
+const ConnectedMap = ({
+  bearing,
+  track,
+  showCenter,
+  center,
+  zoom,
+  setMap,
+  setZoom,
+  getCenter
+}) => {
   /*eslint-disable react/style-prop-object*/
   return (
     <div>
@@ -39,9 +48,13 @@ const ConnectedMap = ({ bearing, track, center, zoom, setMap, setZoom }) => {
         containerStyle={{ height: '90vh', width: '100vw' }}
         zoom={[zoom]}
         minZoom={10}
-        center={center()}
+        //center={[4.3517, 50.8503]}
         bearing={bearing}
-        onStyleLoad={mapboxmap => setMap(mapboxmap)}
+        onStyleLoad={mapboxmap => {
+          setMap(mapboxmap);
+          mapboxmap.flyTo({ center: center() });
+        }}
+        onZoomEnd={mapboxmap => setZoom(mapboxmap.getZoom())}
       >
         <GeoJSONLayer
           data={allRoutes}

@@ -13,7 +13,7 @@ const Controls = () => {
           className="ctrls-icon"
         />
       </a>
-      <SearchInput placeholder="What is your destination?" />
+      {/**<SearchInput placeholder="What is your destination?" />**/}
     </div>
   );
 };

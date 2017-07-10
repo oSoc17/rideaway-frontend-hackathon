@@ -6,7 +6,7 @@
 }
 
 .Map {
-  width: 100%;
+  position: relative;
 }
 
 .nav {
@@ -57,18 +57,9 @@
 }
 
 .btn-center {
-  padding: 0.5em;
-  width: 100%;
-  bottom: 2em;
-  border-radius: 50px;
-  color: $white;
-  font-size: 25px;
-  text-transform: uppercase;
-}
-
-.btn-leftbottom {
-  left: 2em;
-  bottom: 2em;
+  position: absolute;
+  right: 3em;
+  bottom: 3em;
 }
 
 .btn-rightbottom {
